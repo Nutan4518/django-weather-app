@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> WEATHER APP</title>
+    </head>
+    <body>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name ="city1" placeholder="City 1">
+            <input type="text" name ="city2" placeholder="City 2">
+            <button type="submit">COMPARE WEATHER</button>
+        </form>
+        <div class="comparision-container">
+            {% if weather_data1 %}
+                <div class="city-container"></div>
+                    {% include 'weather_html/city_weather.html' with weather_data=weather_data1 daily_forecasts=daily_forecasts1 %}
+            {% endif %}
+            {% if weather_data2 %}
+                <div class="city-container"></div>
+                {% include 'weather_html/city_weather.html' with weather_data=weather_data2 daily_forecasts=daily_forecasts2 %}
+
+            {% endif %}
+
+        </div>
+    </body>
+</html>
